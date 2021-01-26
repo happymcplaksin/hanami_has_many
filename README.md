@@ -1,10 +1,20 @@
 # Happy has many
+## Baseline Hanami
 1. `hanami new hanami-has-many`
     - Note this created a directory named `hanami_has_many`
 1. `bundle install`
+1. Run tests, they work: `bundle exec rake`
 1. `git add <bunch-o-stuff>`
 1. `git commit -av -m 'bundle install'`
 
+## Add model and association
+1. `bundle exec hanami generate model author`
+1. `bundle exec hanami generate model book`
+1. `git commit`
+
+1. Prepare DBs:
+    - Dev: `bundle exec hanami db prepare`
+    - Test: `HANAMI_ENV=test bundle exec hanami db prepare`
 # Hanami Has Many
 
 Welcome to your new Hanami project!

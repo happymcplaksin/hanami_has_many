@@ -1,0 +1,2 @@
+module HanamiHasMany
+end

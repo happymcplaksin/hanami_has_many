@@ -11,10 +11,38 @@
 1. `bundle exec hanami generate model author`
 1. `bundle exec hanami generate model book`
 1. `git commit`
-
+1. Edit author migration: https://guides.hanamirb.org/associations/has-many/
+    - This adds one line: `column :name,       String,   null: false`
+1. Edit book migration based on same link; this adds two lines:
+    - `foreign_key :author_id, :authors, on_delete: :cascade, null: false`
+    - `column :title,      String,   null: false`
 1. Prepare DBs:
     - Dev: `bundle exec hanami db prepare`
     - Test: `HANAMI_ENV=test bundle exec hanami db prepare`
+1. Edit the author repository: https://guides.hanamirb.org/associations/has-many/#basic-usage
+1. Test in console: `bundle exec hanami console --engine=pry`
+    - `author_repository = AuthorRepository.new`
+    - `author = author_repository.create_with_books(name: "Alexandre Dumas", books: [{title: "The Count of Montecristo"}])`
+    - `author.name`
+    - `author.id`
+    - `author.books` # lists books!
+    - `author = author_repository.find(author.id)`
+    - `author.books` # Does NOT list books!
+    - `author = author_repository.find_with_books(author.id)`
+    - `author.books` # lists books!
+1. Test and commit
+1. Edit the author repository again: https://guides.hanamirb.org/associations/has-many/#add-and-remove
+    - 
+
+=> #<Author:0x0000558f2239b870
+ @attributes=
+  {:id=>1,
+   :name=>"Alexandre Dumas",
+   :created_at=>2021-01-26 20:48:33.036234 UTC,
+   :updated_at=>2021-01-26 20:48:33.036234 UTC,
+   :books=>[#<Book:0x0000558f22398490 @attributes={:id=>1, :author_id=>1, :title=>"The Count of Montecristo", :created_at=>2021-01-26 20:48:33.041281 UTC, :updated_at=>2021-01-26 20:48:33.041281 UTC}>]}>
+
+
 # Hanami Has Many
 
 Welcome to your new Hanami project!

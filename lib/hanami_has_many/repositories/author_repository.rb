@@ -10,4 +10,12 @@ class AuthorRepository < Hanami::Repository
   def find_with_books(id)
     aggregate(:books).where(id: id).as(Author).one
   end
+
+  def add_book(author, data)
+    assoc(:books, author).add(data)
+  end
+
+  def remove_book(author, id)
+    assoc(:books, author).remove(id)
+  end
 end

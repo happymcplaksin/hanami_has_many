@@ -32,16 +32,11 @@
     - `author.books` # lists books!
 1. Test and commit
 1. Edit the author repository again: https://guides.hanamirb.org/associations/has-many/#add-and-remove
-    - 
-
-=> #<Author:0x0000558f2239b870
- @attributes=
-  {:id=>1,
-   :name=>"Alexandre Dumas",
-   :created_at=>2021-01-26 20:48:33.036234 UTC,
-   :updated_at=>2021-01-26 20:48:33.036234 UTC,
-   :books=>[#<Book:0x0000558f22398490 @attributes={:id=>1, :author_id=>1, :title=>"The Count of Montecristo", :created_at=>2021-01-26 20:48:33.041281 UTC, :updated_at=>2021-01-26 20:48:33.041281 UTC}>]}>
-
+1. Test in console: `bundle exec hanami console --engine=pry`
+    - `author_repository = AuthorRepository.new`
+    - `author = author_repository.find_with_books(1)`
+    - `book = author_repository.add_book(author, title: "The Three Musketeers")`
+    - `author_repository.remove_book(author, book.id)`
 
 # Hanami Has Many
 
